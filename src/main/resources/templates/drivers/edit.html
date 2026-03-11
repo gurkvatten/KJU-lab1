@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Driver</title>
+</head>
+<body>
+<h1>Edit driver</h1>
+<form th:action="@{/drivers/{id}/edit(id=${driver.id})}" th:object="${driver}" method="post">
+    <div>
+        <label>First name</label>
+        <input type="text" th:field="*{firstName}"/>
+        <span th:errors="*{firstName}"></span>
+    </div>
+    <div>
+        <label>Last name</label>
+        <input type="text" th:field="*{lastName}"/>
+        <span th:errors="*{lastName}"></span>
+    </div>
+    <div>
+        <label>Description</label>
+        <input type="text" th:field="*{description}"/>
+        <span th:errors="*{description}"></span>
+    </div>
+    <div>
+        <label>Date of birth</label>
+        <input type="date" th:field="*{dateOfBirth}"/>
+        <span th:errors="*{dateOfBirth}"></span>
+    </div>
+    <div>
+        <label>Nationality</label>
+        <input type="text" th:field="*{nationality}"/>
+        <span th:errors="*{nationality}"></span>
+    </div>
+    <div>
+        <label>Team</label>
+        <input type="text" th:field="*{teamName}"/>
+        <span th:errors="*{teamName}"></span>
+    </div>
+    <div>
+        <label>Driver number</label>
+        <input type="number" th:field="*{driverNumber}"/>
+        <span th:errors="*{driverNumber}"></span>
+    </div>
+    <div>
+        <label>Championships</label>
+        <input type="number" th:field="*{championships}"/>
+        <span th:errors="*{championships}"></span>
+    </div>
+    <button type="submit">Save</button>
+    <a href="/drivers">Cancel</a>
+</form>
+</body>
+</html>
