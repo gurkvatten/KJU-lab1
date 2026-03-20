@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <title>F1 Drivers</title>
+</head>
+<body>
+<h1>F1 Drivers</h1>
+<a href="/drivers/new">Add new driver</a>
+<a href="/tracks">View Tracks</a>
+<form th:action="@{/drivers}" method="get">
+    <input type="text" name="nationality" placeholder="Nationality" th:value="${nationality}"/>
+    <input type="text" name="teamName" placeholder="Team" th:value="${teamName}"/>
+    <input type="number" name="championships" placeholder="Min championships" th:value="${championships}"/>
+    <button type="submit">Filter</button>
+    <a href="/drivers">Clear</a>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Nationality</th>
+        <th>Championships</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="driver : ${drivers}">
+        <td th:text="${driver.driverNumber}"></td>
+        <td th:text="${driver.firstName + ' ' + driver.lastName}"></td>
+        <td th:text="${driver.teamName}"></td>
+        <td th:text="${driver.nationality}"></td>
+        <td th:text="${driver.championships}"></td>
+        <td>
+            <a th:href="@{/drivers/{id}/edit(id=${driver.id})}">Edit</a>
+            <form th:action="@{/drivers/{id}/delete(id=${driver.id})}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+    <a th:if="${currentPage > 0}"
+       th:href="@{/drivers(page=${currentPage - 1}, size=5, nationality=${nationality}, teamName=${teamName}, championships=${championships})}">
+        Previous
+    </a>
+    <span th:text="${currentPage + 1} + ' / ' + ${totalPages}"></span>
+    <a th:if="${currentPage + 1 < totalPages}"
+       th:href="@{/drivers(page=${currentPage + 1}, size=5, nationality=${nationality}, teamName=${teamName}, championships=${championships})}">
+        Next
+    </a>
+</div>
+
+</body>
+</html>

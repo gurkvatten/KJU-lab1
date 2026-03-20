@@ -1,19 +1,11 @@
-package org.example.kjulab1.entity;
+package org.example.kjulab1.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-
 @Data
-@Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"first_name", "last_name"}))
-public class Driver {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CreateDriverDTO {
 
     @NotBlank(message = "First name is required")
     private String firstName;
@@ -33,10 +25,11 @@ public class Driver {
     @NotBlank(message = "Team name is required")
     private String teamName;
 
-    @Min(value = 1, message = "Driver number must be at least 1")
-    @Max(value = 99, message = "Driver number must be at most 99")
+    @Min(1) @Max(99)
     private int driverNumber;
 
-    @Min(value = 0, message = "Championships cannot be negative")
+    @Min(0)
     private int championships;
+
+
 }
