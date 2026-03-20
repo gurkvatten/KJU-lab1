@@ -41,5 +41,18 @@
     </tr>
     </tbody>
 </table>
+
+<div>
+    <a th:if="${currentPage > 0}"
+       th:href="@{/drivers(page=${currentPage - 1}, size=5, nationality=${nationality}, teamName=${teamName}, championships=${championships})}">
+        Previous
+    </a>
+    <span th:text="${currentPage + 1} + ' / ' + ${totalPages}"></span>
+    <a th:if="${currentPage + 1 < totalPages}"
+       th:href="@{/drivers(page=${currentPage + 1}, size=5, nationality=${nationality}, teamName=${teamName}, championships=${championships})}">
+        Next
+    </a>
+</div>
+
 </body>
 </html>

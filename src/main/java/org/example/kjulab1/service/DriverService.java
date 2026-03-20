@@ -7,6 +7,8 @@ import org.example.kjulab1.entity.Driver;
 import org.example.kjulab1.exception.ResourceNotFoundException;
 import org.example.kjulab1.mapper.DriverMapper;
 import org.example.kjulab1.repository.DriverRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,12 +48,11 @@ public class DriverService {
         driverMapper.updateEntity(dto, driver);
         return driverMapper.toDTO(driverRepository.save(driver));
     }
-    public List<DriverDTO> filterDrivers(String nationality, String teamName, Integer championships) {
-        return driverRepository.filterDrivers(nationality, teamName, championships)
-                .stream()
-                .map(driverMapper::toDTO)
-                .toList();
+    public Page<DriverDTO> filterDrivers(String nationality, String teamName, Integer championships, Pageable pageable) {
+        return driverRepository.filterDrivers(nationality, teamName, championships, pageable)
+                .map(driverMapper::toDTO);
     }
+
 
     public void deleteDriver(Long id) {
         driverRepository.deleteById(id);
