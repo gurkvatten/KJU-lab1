@@ -20,8 +20,19 @@ public class DriverController {
     }
 
     @GetMapping
-    public String listDrivers(Model model) {
-        model.addAttribute("drivers", driverService.getAllDrivers());
+    public String listDrivers(
+            @RequestParam(required = false) String nationality,
+            @RequestParam(required = false) String teamName,
+            @RequestParam(required = false) Integer championships,
+            Model model) {
+
+        if (nationality != null && nationality.isBlank()) nationality = null;
+        if (teamName != null && teamName.isBlank()) teamName = null;
+
+        model.addAttribute("drivers", driverService.filterDrivers(nationality, teamName, championships));
+        model.addAttribute("nationality", nationality);
+        model.addAttribute("teamName", teamName);
+        model.addAttribute("championships", championships);
         return "drivers/list";
     }
 

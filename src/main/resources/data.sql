@@ -1,4 +1,4 @@
-INSERT INTO driver (first_name, last_name, description, date_of_birth, nationality, team_name, driver_number, championships) VALUES
+INSERT IGNORE INTO driver (first_name, last_name, description, date_of_birth, nationality, team_name, driver_number, championships) VALUES
                                                                                                                                  ('Max', 'Verstappen', 'Four-time Formula 1 World Champion driving for Red Bull Racing.', '1997-09-30', 'Dutch', 'Red Bull Racing', 1, 4),
                                                                                                                                  ('Lewis', 'Hamilton', 'Seven-time Formula 1 World Champion, the most successful driver in F1 history.', '1985-01-07', 'British', 'Ferrari', 44, 7),
                                                                                                                                  ('Charles', 'Leclerc', 'Monégasque driver and Ferrari team leader.', '1997-10-16', 'Monégasque', 'Ferrari', 16, 0),

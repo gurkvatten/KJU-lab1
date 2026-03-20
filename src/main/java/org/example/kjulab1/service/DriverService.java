@@ -46,6 +46,12 @@ public class DriverService {
         driverMapper.updateEntity(dto, driver);
         return driverMapper.toDTO(driverRepository.save(driver));
     }
+    public List<DriverDTO> filterDrivers(String nationality, String teamName, Integer championships) {
+        return driverRepository.filterDrivers(nationality, teamName, championships)
+                .stream()
+                .map(driverMapper::toDTO)
+                .toList();
+    }
 
     public void deleteDriver(Long id) {
         driverRepository.deleteById(id);
