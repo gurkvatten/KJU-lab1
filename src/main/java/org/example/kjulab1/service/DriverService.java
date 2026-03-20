@@ -4,6 +4,7 @@ import org.example.kjulab1.dto.CreateDriverDTO;
 import org.example.kjulab1.dto.DriverDTO;
 import org.example.kjulab1.dto.UpdateDriverDTO;
 import org.example.kjulab1.entity.Driver;
+import org.example.kjulab1.exception.ResourceNotFoundException;
 import org.example.kjulab1.mapper.DriverMapper;
 import org.example.kjulab1.repository.DriverRepository;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class DriverService {
 
     public DriverDTO getDriverById(Long id) {
         Driver driver = driverRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Driver not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Driver with id " + id + " not found"));
         return driverMapper.toDTO(driver);
     }
 
@@ -41,7 +42,7 @@ public class DriverService {
 
     public DriverDTO updateDriver(Long id, UpdateDriverDTO dto) {
         Driver driver = driverRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Driver not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Driver with id " + id + " not found"));
         driverMapper.updateEntity(dto, driver);
         return driverMapper.toDTO(driverRepository.save(driver));
     }
