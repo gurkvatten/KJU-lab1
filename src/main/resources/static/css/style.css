@@ -87,3 +87,28 @@ span {
     color: #e63946;
     font-size: 0.85rem;
 }
+div a {
+    display: block;
+    background-color: #16213e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    max-width: 400px;
+    transition: border-color 0.2s;
+}
+
+div a:hover {
+    border-color: #e63946;
+    text-decoration: none;
+}
+
+div a h2 {
+    color: #eaeaea;
+    margin-bottom: 0.5rem;
+}
+
+div a p {
+    color: #aaa;
+    margin: 0;
+}
