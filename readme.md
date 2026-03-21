@@ -18,6 +18,8 @@ School assignment built with Spring Boot and Thymeleaf.
 
 3. Go to `http://localhost:8080` in your browser
 
+4. Or just check out `https://kju-lab1-production.up.railway.app`
+
 ## That's it
 
 Seed data is loaded automatically so the app comes with drivers and tracks out of the box.
